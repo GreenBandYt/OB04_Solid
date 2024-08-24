@@ -1,24 +1,35 @@
-# Lesson_Cod
-# class SmartHouse():
-#     def turn_on_light(self):
-#         pass
-#
-#     def heat_food(self):
-#         pass
-#
-#     def turn_on_music(self):
-#         pass
+# # Lesson_Cod
 
-class Light():
-    def turn_on_light(self):
-        print("Лампа включена")
+from abc import ABC, abstractmethod
 
-class Food():
-    def heat_food(self):
-        print("Еда начала разогреваться")
+class StorySource(ABC):
+    @abstractmethod
+    def get_story(self):
+        pass
 
-class Music():
-    def turn_on_music(self):
-        print("Включаю подборку ваших любимых песен")
+class Book(StorySource):
+    def get_story(self):
+        print("Чтение интересной истории")
+
+class AudioBook(StorySource):
+    def get_story(self):
+        print("Чтение интересной аудиоистории")
+
+class StoryReader():
+    def __init__(self, story_source: StorySource):
+        self.story_source = story_source
+
+    def tell_story(self):
+        self.story_source.get_story()
 
 
+book = Book()
+audioBook = AudioBook()
+
+readerBook = StoryReader(book)
+readerAudioBook = StoryReader(audioBook)
+
+readerBook.tell_story()
+readerAudioBook.tell_story()
+
+        
