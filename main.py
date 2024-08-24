@@ -1,34 +1,38 @@
 # Lesson_Cod
+# class Report():
+#     def __init__(self, title, content):
+#         self.title = title
+#         self.content = content
+#
+#     def docPrinter(self):
+#         print(f" сформирован отчёт {self.title} - {self.content}")
 
-class UserManager():
-    def __init__(self, user):
-        self.user = user
+from abc import ABC, abstractmethod
 
-    def change_user_name(self, user_name):
-        self.user = user_name
+class Formatted(ABC):
+    @abstractmethod
+    def format(self, report):
+        pass
 
-    def save_user(self):
-        file = open("users.txt", "a")
-        file.write(self.user + "\n")
-        file.close()
+class TextFormatted(Formatted):
+    def format(self, report):
+        print(report.title)
+        print(report.content)
 
-class User():
-    def __init__(self, user):
-        self.user = user
+class HtmlFormatted(Formatted):
+    def format(self, report):
+        print(f"<h1>{report.title}</h1>")
+        print(f"<p>{report.content}</p>")
 
-class UserNameChanger():
-    def __init__(self, user):
-        self.user = user
+class Report():
+    def __init__(self, title, content, formated):
+        self.title = title
+        self.content = content
+        self.formated = formated
 
-    def change_name(self, new_name):
-        self.user = new_name
+    def docPrinter(self):
+        self.formated.format(self)
 
-class SaveUser():
-    def __init__(self, user):
-        self.user = user
+report = Report("заголовок отчета", "это основной текст - его тут много", HtmlFormatted())
 
-    def save(self):
-        file = open("users.txt", "a")
-        file.write(self.user + "\n")
-        file.close()
-
+report.docPrinter()
