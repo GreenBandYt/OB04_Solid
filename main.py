@@ -1,21 +1,24 @@
 # Lesson_Cod
-class Bird():
-    def Fly(self):
-        print("Эта птица летает")
+# class SmartHouse():
+#     def turn_on_light(self):
+#         pass
+#
+#     def heat_food(self):
+#         pass
+#
+#     def turn_on_music(self):
+#         pass
 
+class Light():
+    def turn_on_light(self):
+        print("Лампа включена")
 
-class Duck(Bird):
-    def Fly(self):
-        print("Эта утка летает быстро")
+class Food():
+    def heat_food(self):
+        print("Еда начала разогреваться")
 
-def fly_in_the_sky(animal):
-    animal.fly()
-
-
-b = Bird()
-d = Duck()
-
-fly_in_the_sky(b)
-fly_in_the_sky(d)
+class Music():
+    def turn_on_music(self):
+        print("Включаю подборку ваших любимых песен")
 
 
